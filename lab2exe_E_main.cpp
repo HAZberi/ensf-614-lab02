@@ -25,16 +25,18 @@ double read_double_only(void);
 
 int main(void)
 {
-  cplx w, z;            /* entered by user */
-  cplx sum;            /* sum of w and z */
+  cplx w, z; /* entered by user */
+  cplx sum;  /* sum of w and z */
+  cplx difference;
+  cplx product;
   cout << "This programs needs values for complex numbers w and z.\n";
 
   cout << "  Please enter the real part of w     : ";
   w.real = read_double_only();
-    
+
   cout << "  Please enter the imaginary part of w: ";
   w.imag = read_double_only();
-  
+
   cout << "  Please enter the real part of z     : ";
   z.real = read_double_only();
   cout << "  Please enter the imaginary part of z: ";
@@ -45,20 +47,28 @@ int main(void)
 
   sum = cplx_add(w, z);
 
-  cout << "\nsum is (" << sum.real << ") + j(" << sum.imag << "}\n";
+  cout << "\nsum is (" << sum.real << ") + j(" << sum.imag << ")\n";
+
+  cplx_subtract(w, z, &difference);
+
+  cout << "\ndifference is (" << difference.real << ") + j(" << difference.imag << ")\n";
+
+  cplx_multiply(&w, &z, &product);
+
+  cout << "\nproduct is (" << product.real << ") + j(" << product.imag << ")\n";
   return 0;
 }
-
 
 double read_double_only(void)
 {
   double value_read;
   int char_code;
- 
-  if (!(cin >> value_read)) {
+
+  if (!(cin >> value_read))
+  {
     cout << "Error trying to read in a double.  Program terminated.\n";
     exit(1);
   }
- 
+
   return value_read;
 }
